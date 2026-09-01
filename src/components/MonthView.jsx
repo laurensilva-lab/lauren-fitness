@@ -1,137 +1,141 @@
 // ============================================================
 // COMPONENTE: MonthView
-// Muestra UN mes de entrenamiento con navegación entre días.
-// Props:
-//   mes     — objeto del mes con { mes, nombre, objetivo, duracion, inicio, dias }
-//   warmups — array de calentamientos por día (del warmupData)
+// Vista de un mes con tabs de días — estilo tech
 // ============================================================
-
 import { useState } from "react";
 import DayView from "./DayView";
 
 export default function MonthView({ mes, warmups }) {
-  // Día activo (por defecto el primero)
   const [activeDay, setActiveDay] = useState(0);
-
   const diaActual = mes.dias[activeDay];
-
-  // Buscar el calentamiento correspondiente al día actual
   const warmupDelDia = warmups?.find((w) => w.dia === diaActual.dia);
 
   return (
     <div style={styles.container}>
+
       {/* ─── Info del mes ─── */}
-      <div style={styles.monthInfo}>
-        <div style={styles.infoRow}>
-          <InfoPill label="Objetivo" value={mes.objetivo} />
-          <InfoPill label="Duración" value={mes.duracion} />
-          <InfoPill label="Inicio" value={mes.inicio} />
-        </div>
+      <div style={styles.infoBar}>
+        <InfoChip label="OBJ" value={mes.objetivo} />
+        <InfoChip label="DUR" value={mes.duracion} />
+        <InfoChip label="INICIO" value={mes.inicio} />
       </div>
 
-      {/* ─── Selector de días (tabs) ─── */}
+      {/* ─── Selector de días ─── */}
       <div style={styles.dayTabs}>
         {mes.dias.map((dia, i) => (
           <button
             key={i}
-            style={{
-              ...styles.dayTab,
-              ...(activeDay === i ? styles.dayTabActive : {}),
-            }}
+            style={{ ...styles.tab, ...(activeDay === i ? styles.tabActive : {}) }}
             onClick={() => setActiveDay(i)}
           >
-            Día {dia.dia}
+            <span style={activeDay === i ? styles.tabNumActive : styles.tabNum}>
+              {String(dia.dia).padStart(2, "0")}
+            </span>
+            <span style={activeDay === i ? styles.tabSubActive : styles.tabSub}>
+              DÍA
+            </span>
           </button>
         ))}
       </div>
 
-      {/* ─── Contenido del día seleccionado ─── */}
+      {/* ─── Contenido ─── */}
       <DayView dia={diaActual} warmup={warmupDelDia} />
     </div>
   );
 }
 
-// Sub-componente: pastilla de información
-function InfoPill({ label, value }) {
+function InfoChip({ label, value }) {
   return (
-    <div style={infoPillStyles.pill}>
-      <span style={infoPillStyles.label}>{label}</span>
-      <span style={infoPillStyles.value}>{value}</span>
+    <div style={chipStyles.wrap}>
+      <span style={chipStyles.label}>{label}</span>
+      <span style={chipStyles.value}>{value}</span>
     </div>
   );
 }
 
 const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-  },
-  // Fila de información del mes
-  monthInfo: {
-    padding: "14px",
-    background: "#f7f7f7",
-    borderRadius: "12px",
-    border: "1px solid #eee",
-  },
-  infoRow: {
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-  },
-  // Tabs de días
-  dayTabs: {
+  container: { display: "flex", flexDirection: "column", gap: "14px" },
+  infoBar: {
     display: "flex",
     gap: "6px",
+    flexWrap: "wrap",
+  },
+  dayTabs: {
+    display: "flex",
+    gap: "5px",
     overflowX: "auto",
-    paddingBottom: "2px",
-    /* Sin scrollbar visible en móvil */
     scrollbarWidth: "none",
-    msOverflowStyle: "none",
+    paddingBottom: "2px",
   },
-  dayTab: {
+  tab: {
     flexShrink: 0,
-    padding: "8px 16px",
-    borderRadius: "99px",
-    border: "1.5px solid #e0e0e0",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "7px 14px",
+    borderRadius: "8px",
+    border: "1px solid #e4e4e4",
     background: "#fff",
-    fontSize: "13px",
-    fontWeight: "600",
-    color: "#555",
     cursor: "pointer",
-    transition: "all 150ms ease",
     fontFamily: "inherit",
-    whiteSpace: "nowrap",
+    gap: "1px",
+    transition: "all 150ms ease",
   },
-  dayTabActive: {
-    background: "#111",
+  tabActive: {
+    background: "#0a0a0a",
+    border: "1px solid #0a0a0a",
+  },
+  tabNum: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: "15px",
+    fontWeight: "700",
+    color: "#737373",
+    lineHeight: 1,
+  },
+  tabNumActive: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: "15px",
+    fontWeight: "700",
     color: "#fff",
-    border: "1.5px solid #111",
+    lineHeight: 1,
+  },
+  tabSub: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: "8px",
+    fontWeight: "600",
+    color: "#a8a8a8",
+    letterSpacing: "0.1em",
+  },
+  tabSubActive: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: "8px",
+    fontWeight: "600",
+    color: "#737373",
+    letterSpacing: "0.1em",
   },
 };
 
-const infoPillStyles = {
-  pill: {
+const chipStyles = {
+  wrap: {
     display: "flex",
     flexDirection: "column",
     gap: "2px",
-    padding: "8px 12px",
-    background: "#fff",
+    padding: "7px 10px",
+    border: "1px solid #eeeeee",
     borderRadius: "8px",
-    border: "1px solid #eee",
-    minWidth: "80px",
+    background: "#fafafa",
   },
   label: {
-    fontSize: "10px",
-    color: "#aaa",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    fontWeight: "600",
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: "8px",
+    fontWeight: "700",
+    color: "#a8a8a8",
+    letterSpacing: "0.12em",
   },
   value: {
-    fontSize: "13px",
-    fontWeight: "700",
-    color: "#111",
+    fontSize: "12px",
+    fontWeight: "600",
+    color: "#171717",
     lineHeight: 1.2,
   },
 };
