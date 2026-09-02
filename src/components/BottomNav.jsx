@@ -1,3 +1,4 @@
+// BottomNav con 4 tabs: Rutina, Entrada, Calendario, Info
 const IconDumbbell = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
     stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
@@ -13,20 +14,32 @@ const IconFlame = ({ active }) => (
     <path d="M12 2c0 0-5 4-5 9a5 5 0 0 0 10 0c0-2-1-4-2-5 0 2-1 3-2 3-1.5 0-2-1.5-1-7z"/>
   </svg>
 );
+const IconCalendar = ({ active }) => (
+  <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
+    stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition: "stroke 280ms ease" }}>
+    <rect x="3" y="4" width="18" height="18" rx="2"/>
+    <line x1="16" y1="2" x2="16" y2="6"/>
+    <line x1="8"  y1="2" x2="8"  y2="6"/>
+    <line x1="3"  y1="10" x2="21" y2="10"/>
+  </svg>
+);
 const IconInfo = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
     stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
     style={{ transition: "stroke 280ms ease" }}>
     <circle cx="12" cy="12" r="9"/>
-    <line x1="12" y1="8" x2="12" y2="8.5"/><line x1="12" y1="11" x2="12" y2="16"/>
+    <line x1="12" y1="8" x2="12" y2="8.5"/>
+    <line x1="12" y1="11" x2="12" y2="16"/>
   </svg>
 );
 
 export default function BottomNav({ activePage, onNavigate }) {
   const tabs = [
-    { id: "meses",         Icon: IconDumbbell, label: "Rutina"  },
-    { id: "calentamiento", Icon: IconFlame,    label: "Entrada" },
-    { id: "info",          Icon: IconInfo,     label: "Info"    },
+    { id: "meses",         Icon: IconDumbbell, label: "Rutina"   },
+    { id: "calentamiento", Icon: IconFlame,    label: "Entrada"  },
+    { id: "calendario",    Icon: IconCalendar, label: "Calendar" },
+    { id: "info",          Icon: IconInfo,     label: "Info"     },
   ];
   return (
     <nav style={s.nav}>
@@ -48,13 +61,11 @@ export default function BottomNav({ activePage, onNavigate }) {
 const s = {
   nav: {
     position: "fixed", bottom: 0, left: 0, right: 0, maxWidth: "480px", margin: "0 auto",
-    height: "64px",
-    background: "rgba(10,10,10,0.92)",
+    height: "64px", background: "rgba(10,10,10,0.92)",
     backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-    borderTop: "1px solid #1e1e1e",
-    display: "flex", alignItems: "stretch",
-    paddingBottom: "env(safe-area-inset-bottom)",
-    zIndex: 100, boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
+    borderTop: "1px solid #1e1e1e", display: "flex", alignItems: "stretch",
+    paddingBottom: "env(safe-area-inset-bottom)", zIndex: 100,
+    boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
   },
   topLine: {
     position: "absolute", top: 0, left: "10%", right: "10%", height: "1px",
@@ -63,21 +74,19 @@ const s = {
   tab: {
     flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
     justifyContent: "center", gap: "3px", background: "none", border: "none",
-    cursor: "pointer", fontFamily: "inherit", padding: "8px 0", position: "relative",
-    transition: "opacity 200ms ease",
+    cursor: "pointer", fontFamily: "inherit", padding: "6px 0", position: "relative",
   },
   tabActive: {},
   activeBar: {
-    position: "absolute", top: 0, left: "30%", right: "30%", height: "1.5px",
+    position: "absolute", top: 0, left: "25%", right: "25%", height: "1.5px",
     background: "#fff", borderRadius: "0 0 2px 2px",
     boxShadow: "0 0 8px rgba(255,255,255,0.6)",
   },
-  iconWrap: { display: "flex", transition: "transform 300ms cubic-bezier(0.34,1.56,0.64,1)" },
+  iconWrap: { display: "flex" },
   label: {
-    fontSize: "9px", fontWeight: "600", color: "#444",
+    fontSize: "8px", fontWeight: "600", color: "#444",
     letterSpacing: "0.08em", textTransform: "uppercase",
-    fontFamily: "'JetBrains Mono', monospace",
-    transition: "color 280ms ease",
+    fontFamily: "'JetBrains Mono', monospace", transition: "color 280ms ease",
   },
   labelActive: { color: "#a0a0a0" },
 };

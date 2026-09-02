@@ -16,14 +16,14 @@ const IconWarmup = () => (
   </svg>
 );
 
-export default function DayView({ dia, warmup }) {
+export default function DayView({ dia, warmup, checkKeyPrefix }) {
   const [expandedIdx, setExpandedIdx] = useState(null);
   const [warmupOpen,  setWarmupOpen]  = useState(false);
   const toggle = (i) => setExpandedIdx(expandedIdx === i ? null : i);
 
   return (
     <div style={s.container}>
-      {/* Header del día */}
+      {/* Header */}
       <div style={s.header}>
         <div style={s.dayTag}>
           <span style={s.dayLabel}>DAY</span>
@@ -45,11 +45,13 @@ export default function DayView({ dia, warmup }) {
           {warmupOpen && (
             <div style={s.warmupList} className="anim-expand">
               {warmup.ejercicios.map((ej, i) => (
-                <div key={i} style={{ ...s.warmupItem, animationDelay: `${i * 40}ms` }} className="anim-fade-up">
-                  <span style={s.warmupDash}>—</span>
-                  <div>
-                    <div style={s.warmupName}>{ej.nombre}</div>
-                    <div style={s.warmupMeta}>{ej.series} series · {ej.reps}</div>
+                <div key={i} className="anim-fade-up" style={{ animationDelay: `${i * 40}ms` }}>
+                  <div style={s.warmupItem}>
+                    <span style={s.warmupDash}>—</span>
+                    <div>
+                      <div style={s.warmupName}>{ej.nombre}</div>
+                      <div style={s.warmupMeta}>{ej.series} series · {ej.reps}</div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -58,14 +60,16 @@ export default function DayView({ dia, warmup }) {
         </div>
       )}
 
-      {/* Ejercicios */}
+      {/* Ejercicios — cada uno recibe checkKey único */}
       <div style={s.list}>
         {dia.ejercicios.map((ej, i) => (
           <div key={i} className="anim-fade-up" style={{ animationDelay: `${i * 35}ms` }}>
             <ExerciseCard
-              exercise={ej} index={i}
+              exercise={ej}
+              index={i}
               expanded={expandedIdx === i}
               onToggle={() => toggle(i)}
+              checkKey={`${checkKeyPrefix}_d${dia.dia}`}
             />
           </div>
         ))}
@@ -83,26 +87,14 @@ export default function DayView({ dia, warmup }) {
 
 const s = {
   container: { display: "flex", flexDirection: "column", gap: "12px" },
-  header: {
-    display: "flex", alignItems: "center", gap: "10px",
-    paddingBottom: "13px", borderBottom: "1px solid #1a1a1a",
-  },
-  dayTag: {
-    display: "flex", flexDirection: "column", alignItems: "center",
-    padding: "4px 10px", background: "#fff", borderRadius: "6px",
-    boxShadow: "0 0 16px rgba(255,255,255,0.1)",
-  },
+  header: { display: "flex", alignItems: "center", gap: "10px", paddingBottom: "13px", borderBottom: "1px solid #1a1a1a" },
+  dayTag: { display: "flex", flexDirection: "column", alignItems: "center", padding: "4px 10px", background: "#fff", borderRadius: "6px", boxShadow: "0 0 16px rgba(255,255,255,0.1)" },
   dayLabel: { fontFamily: "'JetBrains Mono',monospace", fontSize: "8px", color: "#888", fontWeight: "700", letterSpacing: "0.12em" },
   dayNum:   { fontFamily: "'JetBrains Mono',monospace", fontSize: "18px", color: "#000", fontWeight: "700", lineHeight: 1 },
   tipo:     { flex: 1, fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", color: "#444", letterSpacing: "0.1em", textTransform: "uppercase" },
   count:    { fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", color: "#333", fontWeight: "600", letterSpacing: "0.06em" },
-  // Calentamiento
   warmupBox: { border: "1px solid #1e1e1e", borderRadius: "10px", overflow: "hidden", background: "#0e0e0e" },
-  warmupBtn: {
-    display: "flex", alignItems: "center", gap: "8px", width: "100%",
-    padding: "11px 13px", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit",
-    transition: "background 200ms ease",
-  },
+  warmupBtn: { display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: "11px 13px", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", transition: "background 200ms ease" },
   warmupTitle: { fontFamily: "'JetBrains Mono',monospace", fontSize: "10px", fontWeight: "700", color: "#444", letterSpacing: "0.08em" },
   warmupCount: { fontSize: "11px", color: "#333", fontWeight: "500" },
   warmupList: { padding: "10px 13px 13px", borderTop: "1px solid #1a1a1a", display: "flex", flexDirection: "column", gap: "10px" },
@@ -111,14 +103,6 @@ const s = {
   warmupName: { fontSize: "13px", fontWeight: "600", color: "#c0c0c0", lineHeight: 1.3 },
   warmupMeta: { fontFamily: "'JetBrains Mono',monospace", fontSize: "11px", color: "#444", marginTop: "2px" },
   list: { display: "flex", flexDirection: "column" },
-  note: {
-    padding: "10px 12px", background: "#0e0e0e", border: "1px solid #1e1e1e",
-    borderRadius: "8px", fontSize: "12px", color: "#555", lineHeight: 1.5,
-    display: "flex", gap: "8px", alignItems: "flex-start",
-  },
-  noteTag: {
-    flexShrink: 0, fontFamily: "'JetBrains Mono',monospace", fontSize: "9px",
-    fontWeight: "700", color: "#000", background: "#fff", padding: "2px 6px",
-    borderRadius: "3px", letterSpacing: "0.06em", marginTop: "1px",
-  },
+  note: { padding: "10px 12px", background: "#0e0e0e", border: "1px solid #1e1e1e", borderRadius: "8px", fontSize: "12px", color: "#555", lineHeight: 1.5, display: "flex", gap: "8px", alignItems: "flex-start" },
+  noteTag: { flexShrink: 0, fontFamily: "'JetBrains Mono',monospace", fontSize: "9px", fontWeight: "700", color: "#000", background: "#fff", padding: "2px 6px", borderRadius: "3px", letterSpacing: "0.06em", marginTop: "1px" },
 };
