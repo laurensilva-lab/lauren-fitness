@@ -3,22 +3,29 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- Favicon principal -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <!-- ═══ FAVICON — pestaña del navegador ═══ -->
+    <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
 
-    <!-- iOS: ícono al anclar en pantalla de inicio -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- ═══ iOS — ícono al anclar en pantalla de inicio ═══
+         Safari usa apple-touch-icon automáticamente.
+         180x180 es el tamaño recomendado para retina. -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="RSE" />
 
-    <!-- Android PWA manifest -->
+    <!-- ═══ Android — PWA manifest ═══
+         Chrome usa manifest.json para el ícono al anclar. -->
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#0a0a0a" />
     <meta name="mobile-web-app-capable" content="yes" />
 
+    <!-- ═══ Color de la barra del navegador y status bar ═══ -->
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- ═══ Viewport con soporte para notch (safe area) ═══ -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
     <title>RSE — Rutina Lauren</title>
   </head>
   <body>
