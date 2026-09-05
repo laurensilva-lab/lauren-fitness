@@ -34,6 +34,8 @@ export default function InfoScreen({ programInfo, meses, gruposMusc }) {
     <div style={s.container}>
       {/* Hero con logo RSE de fondo */}
       <div style={s.hero} className="anim-fade-up">
+        {/* Anillo LED animado — gradiente rotante que simula luz corriendo por el borde */}
+        <div style={s.heroLedRing} />
         {/* Logo RSE — semitransparente de fondo */}
         <img src="/img/rse-logo.jpg" alt="" aria-hidden style={s.heroBgImg} />
         {/* Overlay para legibilidad */}
@@ -127,23 +129,52 @@ const tagS = {
 const s = {
   container: { display: "flex", flexDirection: "column", gap: "28px" },
   hero: {
-    position: "relative", background: "#111", borderRadius: "14px",
-    overflow: "hidden", padding: "40px 20px 36px", border: "1px solid #1e1e1e",
-    minHeight: "160px",
+    position: "relative",
+    borderRadius: "16px",
+    overflow: "hidden",
+    padding: "40px 20px 36px",
+    minHeight: "180px",
+    background: "#0a0a0a",
+    // Borde LED animado via outline + box-shadow combinados
+    border: "1px solid transparent",
+    backgroundClip: "padding-box",
+    // Glow exterior estático — el CSS @keyframes hace el movimiento
+    boxShadow: [
+      "0 0 0 1px #1a1a1a",
+      "0 0 16px 2px rgba(255,255,255,0.08)",
+      "0 0 40px 4px rgba(255,255,255,0.03)",
+      "0 8px 32px rgba(0,0,0,0.7)",
+    ].join(", "),
+    animation: "ledBorder 3s ease-in-out infinite",
   },
-  // Logo RSE de fondo — ocupa todo el hero
+  // Pseudo-borde LED — div absoluto con gradiente rotante
+  heroLedRing: {
+    position: "absolute",
+    inset: "-1px",
+    borderRadius: "17px",
+    padding: "1px",
+    background: "linear-gradient(135deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.35) 25%, rgba(255,255,255,0.0) 50%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0.0) 100%)",
+    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+    WebkitMaskComposite: "xor",
+    maskComposite: "exclude",
+    animation: "rotateLed 4s linear infinite",
+    pointerEvents: "none",
+    zIndex: 0,
+  },
   heroBgImg: {
     position: "absolute", inset: 0, width: "100%", height: "100%",
     objectFit: "cover", objectPosition: "center",
-    opacity: 0.18,           // muy sutil para no tapar el texto
-    mixBlendMode: "luminosity",
+    opacity: 0.2, mixBlendMode: "luminosity",
+    zIndex: 0,
   },
-  // Gradiente oscuro encima de la imagen para que el texto se lea
   heroOverlay: {
-    position: "absolute", inset: 0,
-    background: "linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 100%)",
+    position: "absolute", inset: 0, zIndex: 1,
+    background: "linear-gradient(180deg, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.65) 100%)",
   },
-  heroContent: { position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", textAlign: "center" },
+  heroContent: {
+    position: "relative", zIndex: 2,
+    display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", textAlign: "center",
+  },
   heroTitle: { fontSize: "24px", fontWeight: "800", color: "#f0f0f0", letterSpacing: "-0.03em" },
   heroSub:   { fontSize: "13px", color: "#444" },
   heroBadge: {
