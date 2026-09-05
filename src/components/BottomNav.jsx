@@ -1,36 +1,37 @@
-// BottomNav con 4 tabs: Rutina, Entrada, Calendario, Info
 const IconDumbbell = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
-    stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
-    style={{ transition: "stroke 280ms ease" }}>
+    stroke={active ? "#fff" : "#555"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition: "stroke 280ms ease, filter 280ms ease",
+             filter: active ? "drop-shadow(0 0 6px rgba(255,255,255,0.5))" : "none" }}>
     <path d="M6 4v16M18 4v16"/><path d="M3 8h3M18 8h3M3 16h3M18 16h3"/>
     <line x1="6" y1="12" x2="18" y2="12"/>
   </svg>
 );
 const IconFlame = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
-    stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
-    style={{ transition: "stroke 280ms ease" }}>
+    stroke={active ? "#fff" : "#555"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition: "stroke 280ms ease, filter 280ms ease",
+             filter: active ? "drop-shadow(0 0 6px rgba(255,255,255,0.5))" : "none" }}>
     <path d="M12 2c0 0-5 4-5 9a5 5 0 0 0 10 0c0-2-1-4-2-5 0 2-1 3-2 3-1.5 0-2-1.5-1-7z"/>
   </svg>
 );
 const IconCalendar = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
-    stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
-    style={{ transition: "stroke 280ms ease" }}>
+    stroke={active ? "#fff" : "#555"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition: "stroke 280ms ease, filter 280ms ease",
+             filter: active ? "drop-shadow(0 0 6px rgba(255,255,255,0.5))" : "none" }}>
     <rect x="3" y="4" width="18" height="18" rx="2"/>
-    <line x1="16" y1="2" x2="16" y2="6"/>
-    <line x1="8"  y1="2" x2="8"  y2="6"/>
-    <line x1="3"  y1="10" x2="21" y2="10"/>
+    <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+    <line x1="3" y1="10" x2="21" y2="10"/>
   </svg>
 );
 const IconInfo = ({ active }) => (
   <svg width="21" height="21" viewBox="0 0 24 24" fill="none"
-    stroke={active ? "#fff" : "#444"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
-    style={{ transition: "stroke 280ms ease" }}>
+    stroke={active ? "#fff" : "#555"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition: "stroke 280ms ease, filter 280ms ease",
+             filter: active ? "drop-shadow(0 0 6px rgba(255,255,255,0.5))" : "none" }}>
     <circle cx="12" cy="12" r="9"/>
-    <line x1="12" y1="8" x2="12" y2="8.5"/>
-    <line x1="12" y1="11" x2="12" y2="16"/>
+    <line x1="12" y1="8" x2="12" y2="8.5"/><line x1="12" y1="11" x2="12" y2="16"/>
   </svg>
 );
 
@@ -41,52 +42,60 @@ export default function BottomNav({ activePage, onNavigate }) {
     { id: "calendario",    Icon: IconCalendar, label: "Calendar" },
     { id: "info",          Icon: IconInfo,     label: "Info"     },
   ];
+
   return (
-    <nav style={s.nav}>
-      <div style={s.topLine} />
+    <nav style={{
+      position: "fixed", bottom: 0, left: 0, right: 0,
+      maxWidth: "480px", margin: "0 auto",
+      height: "64px",
+      background: "linear-gradient(180deg, rgba(18,18,18,0.96) 0%, rgba(10,10,10,0.99) 100%)",
+      backdropFilter: "blur(24px) saturate(1.5)",
+      WebkitBackdropFilter: "blur(24px) saturate(1.5)",
+      borderTop: "1px solid #222",
+      boxShadow: "0 -1px 0 rgba(255,255,255,0.04), 0 -8px 32px rgba(0,0,0,0.7)",
+      display: "flex", alignItems: "stretch",
+      paddingBottom: "env(safe-area-inset-bottom)",
+      zIndex: 100,
+    }}>
+      {/* Línea superior con glow */}
+      <div style={{
+        position: "absolute", top: 0, left: "5%", right: "5%", height: "1px",
+        background: "linear-gradient(90deg, transparent, #2a2a2a 20%, #3d3d3d 50%, #2a2a2a 80%, transparent)",
+      }} />
+
       {tabs.map(({ id, Icon, label }) => {
         const active = activePage === id;
         return (
-          <button key={id} style={{ ...s.tab, ...(active ? s.tabActive : {}) }} onClick={() => onNavigate(id)}>
-            {active && <span style={s.activeBar} />}
-            <span style={s.iconWrap}><Icon active={active} /></span>
-            <span style={{ ...s.label, ...(active ? s.labelActive : {}) }}>{label}</span>
+          <button key={id} onClick={() => onNavigate(id)}
+            style={{
+              flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
+              justifyContent: "center", gap: "4px", position: "relative",
+              background: active
+                ? "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%)"
+                : "none",
+              border: "none", cursor: "pointer", fontFamily: "inherit", padding: "6px 0",
+              transition: "background 250ms ease",
+            }}>
+            {/* Barra activa superior con glow */}
+            {active && (
+              <span style={{
+                position: "absolute", top: 0, left: "20%", right: "20%", height: "2px",
+                background: "linear-gradient(90deg, transparent, #fff 30%, #fff 70%, transparent)",
+                boxShadow: "0 0 12px rgba(255,255,255,0.8), 0 0 4px rgba(255,255,255,1)",
+                borderRadius: "0 0 2px 2px",
+              }} />
+            )}
+            <Icon active={active} />
+            <span style={{
+              fontSize: "8px", fontWeight: "700",
+              color: active ? "#ccc" : "#3a3a3a",
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              fontFamily: "var(--font-mono)",
+              transition: "color 280ms ease",
+            }}>{label}</span>
           </button>
         );
       })}
     </nav>
   );
 }
-
-const s = {
-  nav: {
-    position: "fixed", bottom: 0, left: 0, right: 0, maxWidth: "480px", margin: "0 auto",
-    height: "64px", background: "rgba(10,10,10,0.92)",
-    backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-    borderTop: "1px solid #1e1e1e", display: "flex", alignItems: "stretch",
-    paddingBottom: "env(safe-area-inset-bottom)", zIndex: 100,
-    boxShadow: "0 -4px 24px rgba(0,0,0,0.5)",
-  },
-  topLine: {
-    position: "absolute", top: 0, left: "10%", right: "10%", height: "1px",
-    background: "linear-gradient(90deg, transparent, #2a2a2a 30%, #3a3a3a 50%, #2a2a2a 70%, transparent)",
-  },
-  tab: {
-    flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
-    justifyContent: "center", gap: "3px", background: "none", border: "none",
-    cursor: "pointer", fontFamily: "inherit", padding: "6px 0", position: "relative",
-  },
-  tabActive: {},
-  activeBar: {
-    position: "absolute", top: 0, left: "25%", right: "25%", height: "1.5px",
-    background: "#fff", borderRadius: "0 0 2px 2px",
-    boxShadow: "0 0 8px rgba(255,255,255,0.6)",
-  },
-  iconWrap: { display: "flex" },
-  label: {
-    fontSize: "8px", fontWeight: "600", color: "#444",
-    letterSpacing: "0.08em", textTransform: "uppercase",
-    fontFamily: "'JetBrains Mono', monospace", transition: "color 280ms ease",
-  },
-  labelActive: { color: "#a0a0a0" },
-};
