@@ -32,13 +32,14 @@ const nutrition = [
 export default function InfoScreen({ programInfo, meses, gruposMusc }) {
   return (
     <div style={s.container}>
-      {/* Hero */}
+      {/* Hero con logo RSE de fondo */}
       <div style={s.hero} className="anim-fade-up">
-        <div style={s.heroGrid} aria-hidden>
-          {[...Array(6)].map((_, i) => <div key={i} style={{ ...s.heroGridLine, left: `${i * 20}%` }} />)}
-        </div>
+        {/* Logo RSE — semitransparente de fondo */}
+        <img src="/img/rse-logo.jpg" alt="" aria-hidden style={s.heroBgImg} />
+        {/* Overlay para legibilidad */}
+        <div style={s.heroOverlay} />
+        {/* Contenido */}
         <div style={s.heroContent}>
-          <div style={s.heroIconWrap}><IconTarget /></div>
           <h2 style={s.heroTitle}>Mi Programa</h2>
           <p style={s.heroSub}>{programInfo.objetivo}</p>
           <div style={s.heroBadge}><span style={s.heroDot} />{programInfo.planificacion}</div>
@@ -127,16 +128,22 @@ const s = {
   container: { display: "flex", flexDirection: "column", gap: "28px" },
   hero: {
     position: "relative", background: "#111", borderRadius: "14px",
-    overflow: "hidden", padding: "32px 20px", border: "1px solid #1e1e1e",
+    overflow: "hidden", padding: "40px 20px 36px", border: "1px solid #1e1e1e",
+    minHeight: "160px",
   },
-  heroGrid: { position: "absolute", inset: 0, overflow: "hidden" },
-  heroGridLine: { position: "absolute", top: 0, bottom: 0, width: "1px", background: "rgba(255,255,255,0.03)" },
-  heroContent: { position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", textAlign: "center" },
-  heroIconWrap: {
-    width: "48px", height: "48px", borderRadius: "50%",
-    border: "1px solid #2a2a2a", display: "flex", alignItems: "center", justifyContent: "center",
-    color: "#888", marginBottom: "4px", background: "#161616",
+  // Logo RSE de fondo — ocupa todo el hero
+  heroBgImg: {
+    position: "absolute", inset: 0, width: "100%", height: "100%",
+    objectFit: "cover", objectPosition: "center",
+    opacity: 0.18,           // muy sutil para no tapar el texto
+    mixBlendMode: "luminosity",
   },
+  // Gradiente oscuro encima de la imagen para que el texto se lea
+  heroOverlay: {
+    position: "absolute", inset: 0,
+    background: "linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.6) 100%)",
+  },
+  heroContent: { position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", textAlign: "center" },
   heroTitle: { fontSize: "24px", fontWeight: "800", color: "#f0f0f0", letterSpacing: "-0.03em" },
   heroSub:   { fontSize: "13px", color: "#444" },
   heroBadge: {
