@@ -1,148 +1,80 @@
-// ============================================================
-// COMPONENTE: VideoPlayer
-// Reproduce videos de YouTube DENTRO de la app, sin redirigir.
-// Props:
-//   videoId  — ID del video de YouTube (ej: "dQw4w9WgXcQ")
-//              Si está vacío, muestra placeholder con mensaje
-//   title    — Título del ejercicio para accesibilidad
-// ============================================================
-
 import { useState } from "react";
 
 export default function VideoPlayer({ videoId, title = "Ejercicio" }) {
-  // Estado para mostrar/ocultar el reproductor
   const [playing, setPlaying] = useState(false);
 
-  // Si no hay videoId, mostrar mensaje de "sin video"
   if (!videoId) {
     return (
-      <div style={styles.placeholder}>
-        <span style={styles.placeholderIcon}>▷</span>
-        <span style={styles.placeholderText}>Sin video aún</span>
+      <div style={{
+        display: "flex", alignItems: "center", gap: "8px",
+        padding: "10px 13px", borderRadius: "9px",
+        background: "linear-gradient(145deg, #0e0e0e 0%, #0a0a0a 100%)",
+        border: "1px dashed #222", color: "#2a2a2a", fontSize: "12px",
+      }}>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Sin video — próximamente
       </div>
     );
   }
 
-  // Si el usuario presionó play, mostrar el iframe de YouTube
   if (playing) {
     return (
-      <div style={styles.wrapper}>
+      <div style={{ borderRadius: "10px", overflow: "hidden", background: "#000", boxShadow: "0 8px 32px rgba(0,0,0,0.7)" }}>
         <iframe
-          style={styles.iframe}
-          /* 
-           * Parámetros de YouTube:
-           * autoplay=1     → empieza automáticamente
-           * rel=0          → no muestra videos relacionados al terminar
-           * modestbranding → oculta logo de YouTube
-           */
+          style={{ display: "block", width: "100%", aspectRatio: "16/9", border: "none" }}
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-        {/* Botón para cerrar el video */}
-        <button style={styles.closeBtn} onClick={() => setPlaying(false)}>
-          ✕ Cerrar
-        </button>
+        <button onClick={() => setPlaying(false)} style={{
+          display: "block", width: "100%", padding: "9px",
+          background: "linear-gradient(180deg, #161616 0%, #111 100%)",
+          border: "none", borderTop: "1px solid #222",
+          color: "#444", fontSize: "12px", textAlign: "center",
+          cursor: "pointer", fontFamily: "inherit",
+          transition: "background 200ms ease",
+        }}>✕ Cerrar</button>
       </div>
     );
   }
 
-  // Estado inicial: mostrar thumbnail con botón de play
   return (
-    <div style={styles.thumbnail} onClick={() => setPlaying(true)}>
-      {/* Imagen miniatura de YouTube generada automáticamente */}
+    <div onClick={() => setPlaying(true)} style={{
+      position: "relative", width: "100%", borderRadius: "10px",
+      overflow: "hidden", cursor: "pointer",
+      border: "1px solid #252525", borderTopColor: "#2e2e2e",
+      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04), 0 6px 24px rgba(0,0,0,0.6)",
+      transition: "box-shadow 250ms ease, border-color 250ms ease",
+    }}>
       <img
         src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
-        alt={`Ver tutorial: ${title}`}
-        style={styles.thumbnailImg}
+        alt={title}
+        style={{ display: "block", width: "100%", aspectRatio: "16/9", objectFit: "cover", opacity: 0.55 }}
       />
-      <div style={styles.playOverlay}>
-        <div style={styles.playBtn}>▶</div>
+      {/* Overlay con gradiente */}
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{
+          width: "52px", height: "52px", borderRadius: "50%",
+          background: "linear-gradient(145deg, #fff 0%, #ccc 100%)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          paddingLeft: "3px",
+          boxShadow: "0 0 30px rgba(255,255,255,0.25), 0 0 60px rgba(255,255,255,0.1), 0 6px 20px rgba(0,0,0,0.5)",
+          border: "1px solid rgba(255,255,255,0.5)",
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#000"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
       </div>
+      {/* Label */}
+      <div style={{
+        position: "absolute", bottom: "10px", left: "12px",
+        fontFamily: "var(--font-mono)", fontSize: "10px", fontWeight: "700",
+        color: "rgba(255,255,255,0.5)", letterSpacing: "0.08em",
+      }}>VER TUTORIAL</div>
     </div>
   );
 }
-
-const styles = {
-  // Contenedor cuando está reproduciendo
-  wrapper: {
-    position: "relative",
-    width: "100%",
-    borderRadius: "8px",
-    overflow: "hidden",
-    background: "#000",
-    marginTop: "8px",
-  },
-  // El iframe de YouTube — relación 16:9
-  iframe: {
-    display: "block",
-    width: "100%",
-    aspectRatio: "16/9",
-    border: "none",
-  },
-  // Botón cerrar video
-  closeBtn: {
-    display: "block",
-    width: "100%",
-    padding: "8px",
-    background: "#111",
-    color: "#fff",
-    fontSize: "13px",
-    textAlign: "center",
-    cursor: "pointer",
-    fontFamily: "inherit",
-    border: "none",
-  },
-  // Thumbnail antes de hacer play
-  thumbnail: {
-    position: "relative",
-    width: "100%",
-    borderRadius: "8px",
-    overflow: "hidden",
-    cursor: "pointer",
-    marginTop: "8px",
-    background: "#000",
-  },
-  thumbnailImg: {
-    display: "block",
-    width: "100%",
-    aspectRatio: "16/9",
-    objectFit: "cover",
-    opacity: 0.85,
-  },
-  // Overlay con botón de play centrado
-  playOverlay: {
-    position: "absolute",
-    inset: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  playBtn: {
-    width: "48px",
-    height: "48px",
-    borderRadius: "50%",
-    background: "rgba(255,255,255,0.92)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "20px",
-    paddingLeft: "3px",
-    boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
-  },
-  // Placeholder cuando no hay video
-  placeholder: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    padding: "8px 10px",
-    background: "#f5f5f5",
-    borderRadius: "6px",
-    marginTop: "6px",
-    color: "#aaa",
-    fontSize: "12px",
-  },
-  placeholderIcon: { fontSize: "14px", opacity: 0.5 },
-  placeholderText: { fontStyle: "italic" },
-};

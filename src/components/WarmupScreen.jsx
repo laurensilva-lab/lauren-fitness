@@ -1,234 +1,137 @@
-// ============================================================
-// COMPONENTE: WarmupScreen
-// Pantalla de calentamiento con instrucciones y ejercicios por día
-// Props:
-//   data — objeto warmupData con instrucciones y dias
-// ============================================================
-
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 
-export default function WarmupScreen({ data }) {
-  // Día de calentamiento activo
-  const [activeDay, setActiveDay] = useState(0);
-  // Índice del ejercicio expandido
-  const [expanded, setExpanded] = useState(null);
+const Chevron = ({ open }) => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+    style={{ transition:"transform 300ms cubic-bezier(0.34,1.56,0.64,1)", transform: open?"rotate(180deg)":"rotate(0deg)" }}>
+    <polyline points="6 9 12 15 18 9"/>
+  </svg>
+);
 
+const ledCard = {
+  borderRadius:"12px", overflow:"hidden",
+  background:"linear-gradient(145deg,#141414 0%,#0c0c0c 100%)",
+  borderTop:"1px solid rgba(255,255,255,0.08)", borderLeft:"1px solid rgba(255,255,255,0.04)",
+  borderRight:"1px solid rgba(0,0,0,0.4)", borderBottom:"1px solid rgba(0,0,0,0.55)",
+  boxShadow:"inset 0 1px 0 rgba(255,255,255,0.05), 2px 4px 12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)",
+};
+
+const ledBtn = {
+  display:"flex", alignItems:"center", gap:"8px", width:"100%",
+  padding:"12px 14px", background:"none", border:"none", cursor:"pointer", fontFamily:"inherit",
+};
+
+const tabStyle = (active) => ({
+  flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center",
+  padding:"8px 16px", borderRadius:"10px", gap:"2px", cursor:"pointer", fontFamily:"inherit",
+  background: active ? "linear-gradient(160deg,#fff 0%,#c8c8c8 100%)" : "linear-gradient(160deg,#1c1c1c 0%,#111 100%)",
+  borderTop:    active ? "1px solid rgba(255,255,255,0.95)" : "1px solid rgba(255,255,255,0.10)",
+  borderLeft:   active ? "1px solid rgba(255,255,255,0.5)"  : "1px solid rgba(255,255,255,0.05)",
+  borderRight:  active ? "1px solid rgba(0,0,0,0.1)"        : "1px solid rgba(0,0,0,0.4)",
+  borderBottom: active ? "1px solid rgba(0,0,0,0.18)"       : "1px solid rgba(0,0,0,0.55)",
+  boxShadow: active
+    ? "inset 0 1px 0 rgba(255,255,255,0.95), 3px 6px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.4), 0 0 24px rgba(255,255,255,0.12)"
+    : "inset 0 1px 0 rgba(255,255,255,0.07), 2px 4px 10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
+  transition:"all 280ms cubic-bezier(0.34,1.56,0.64,1)",
+  transform: active ? "translateY(-1px)" : "translateY(0)",
+});
+
+export default function WarmupScreen({ data }) {
+  const [activeDay, setActiveDay] = useState(0);
+  const [expanded, setExpanded]   = useState(null);
+  const [infoOpen, setInfoOpen]   = useState(false);
   const diaActual = data.dias[activeDay];
 
   return (
-    <div style={styles.container}>
-      {/* ─── Instrucciones generales ─── */}
-      <div style={styles.infoCard}>
-        <h2 style={styles.infoTitle}>Cómo calentar</h2>
-        <p style={styles.infoText}>{data.instrucciones}</p>
-        <div style={styles.divider} />
-        <p style={styles.infoSubtitle}>¿Cuándo hacer 2-3 series?</p>
-        <p style={styles.infoText}>{data.cuandoHacer2o3Series}</p>
+    <div style={{ display:"flex", flexDirection:"column", gap:"14px" }}>
+
+      {/* Instrucciones */}
+      <div style={ledCard}>
+        <button style={ledBtn} onClick={()=>setInfoOpen(!infoOpen)}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#3a3a3a" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.5"/><line x1="12" y1="11" x2="12" y2="16"/>
+          </svg>
+          <span style={{ fontFamily:"var(--font-mono)", fontSize:"10px", fontWeight:"700", color:"#333", letterSpacing:"0.1em" }}>INSTRUCCIONES</span>
+          <span style={{ marginLeft:"auto" }}><Chevron open={infoOpen} /></span>
+        </button>
+        {infoOpen && (
+          <div style={{ padding:"14px", borderTop:"1px solid rgba(255,255,255,0.03)" }} className="anim-expand">
+            <p style={{ fontSize:"13px", color:"#444", lineHeight:1.6 }}>{data.instrucciones}</p>
+            <div className="divider-led" style={{ margin:"10px 0" }} />
+            <p style={{ fontSize:"12px", fontWeight:"700", color:"#555", marginBottom:"6px" }}>¿Cuándo hacer 2-3 series?</p>
+            <p style={{ fontSize:"13px", color:"#444", lineHeight:1.6 }}>{data.cuandoHacer2o3Series}</p>
+          </div>
+        )}
       </div>
 
-      {/* ─── Selector de día ─── */}
-      <div style={styles.dayTabs}>
-        {data.dias.map((d, i) => (
-          <button
-            key={i}
-            style={{
-              ...styles.tab,
-              ...(activeDay === i ? styles.tabActive : {}),
-            }}
-            onClick={() => {
-              setActiveDay(i);
-              setExpanded(null);
-            }}
-          >
-            Día {d.dia}
+      {/* Tabs días */}
+      <div style={{ display:"flex", gap:"6px", overflowX:"auto", scrollbarWidth:"none" }}>
+        {data.dias.map((d,i)=>(
+          <button key={i} onClick={()=>{ setActiveDay(i); setExpanded(null); }} style={tabStyle(activeDay===i)}>
+            <span style={{ fontFamily:"var(--font-mono)", fontSize:"16px", fontWeight:"700", lineHeight:1, color: activeDay===i?"#000":"#444" }}>
+              {String(d.dia).padStart(2,"0")}
+            </span>
+            <span style={{ fontFamily:"var(--font-mono)", fontSize:"8px", letterSpacing:"0.1em", color: activeDay===i?"#666":"#222" }}>DÍA</span>
           </button>
         ))}
       </div>
 
-      {/* ─── Ejercicios del día ─── */}
-      <div style={styles.list}>
-        {diaActual.ejercicios.map((ej, i) => (
-          <div key={i} style={styles.card}>
-            <button
-              style={styles.cardHeader}
-              onClick={() => setExpanded(expanded === i ? null : i)}
-            >
-              <span style={styles.number}>{i + 1}</span>
-              <span style={styles.name}>{ej.nombre}</span>
-              <span style={styles.meta}>{ej.series} × {ej.reps}</span>
-              <span style={{ fontSize: "13px", color: "#aaa" }}>
-                {expanded === i ? "▲" : "▼"}
-              </span>
-            </button>
-
-            {expanded === i && (
-              <div style={styles.cardBody}>
-                {/* Stats */}
-                <div style={styles.statsRow}>
-                  <StatBox label="Series" value={ej.series} />
-                  <StatBox label="Reps" value={ej.reps} />
-                  <StatBox label="Descanso" value="0 seg" />
-                </div>
-                {/* Video */}
-                <VideoPlayer videoId={ej.videoId} title={ej.nombre} />
+      {/* Ejercicios */}
+      <div style={{ display:"flex", flexDirection:"column", gap:"7px" }}>
+        {diaActual.ejercicios.map((ej,i)=>{
+          const open = expanded === i;
+          return (
+            <div key={i} className="anim-fade-up" style={{ animationDelay:`${i*40}ms` }}>
+              <div style={{
+                borderRadius:"12px", overflow:"hidden",
+                background: open ? "linear-gradient(145deg,#1a1a1a 0%,#0f0f0f 100%)" : "linear-gradient(145deg,#141414 0%,#0c0c0c 100%)",
+                borderTop:    open ? "1px solid rgba(255,255,255,0.14)" : "1px solid rgba(255,255,255,0.08)",
+                borderLeft:   open ? "1px solid rgba(255,255,255,0.07)" : "1px solid rgba(255,255,255,0.04)",
+                borderRight:  open ? "1px solid rgba(0,0,0,0.55)"       : "1px solid rgba(0,0,0,0.4)",
+                borderBottom: open ? "1px solid rgba(0,0,0,0.7)"        : "1px solid rgba(0,0,0,0.55)",
+                boxShadow: open
+                  ? "inset 0 1px 0 rgba(255,255,255,0.1), inset 1px 0 0 rgba(255,255,255,0.05), 4px 8px 24px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06)"
+                  : "inset 0 1px 0 rgba(255,255,255,0.05), 2px 4px 10px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03)",
+                transition:"all 280ms cubic-bezier(0.16,1,0.3,1)",
+              }}>
+                <button onClick={()=>setExpanded(open?null:i)} style={{ display:"flex", alignItems:"center", gap:"10px", width:"100%", padding:"13px 14px", background:"none", border:"none", cursor:"pointer", fontFamily:"inherit", textAlign:"left" }}>
+                  <span style={{ fontFamily:"var(--font-mono)", fontSize:"11px", fontWeight:"700", color:"#2a2a2a", flexShrink:0 }}>{String(i+1).padStart(2,"0")}</span>
+                  <span style={{ flex:1, fontSize:"13.5px", fontWeight:"600", color:"#c0c0c0" }}>{ej.nombre}</span>
+                  <span style={{
+                    padding:"3px 9px", borderRadius:"99px",
+                    background:"linear-gradient(145deg,#161616 0%,#0e0e0e 100%)",
+                    borderTop:"1px solid rgba(255,255,255,0.07)", borderLeft:"1px solid rgba(255,255,255,0.03)",
+                    borderRight:"1px solid rgba(0,0,0,0.35)", borderBottom:"1px solid rgba(0,0,0,0.5)",
+                    boxShadow:"inset 0 1px 0 rgba(255,255,255,0.04), 1px 2px 6px rgba(0,0,0,0.4)",
+                    fontSize:"11px", fontWeight:"600", color:"#444", fontFamily:"var(--font-mono)", flexShrink:0,
+                  }}>{ej.series}×{ej.reps}</span>
+                  <Chevron open={open} />
+                </button>
+                {open && (
+                  <div style={{ padding:"0 14px 14px", borderTop:"1px solid rgba(255,255,255,0.03)" }} className="anim-expand">
+                    <div style={{ display:"flex", gap:"6px", paddingTop:"12px", marginBottom:"12px" }}>
+                      {[["SERIES",ej.series],["REPS",ej.reps],["DESCANSO","0s"]].map(([l,v])=>(
+                        <div key={l} style={{
+                          display:"flex", flexDirection:"column", alignItems:"center", gap:"4px",
+                          padding:"8px 12px", borderRadius:"10px",
+                          background:"linear-gradient(145deg,#181818 0%,#101010 100%)",
+                          borderTop:"1px solid rgba(255,255,255,0.1)", borderLeft:"1px solid rgba(255,255,255,0.05)",
+                          borderRight:"1px solid rgba(0,0,0,0.4)", borderBottom:"1px solid rgba(0,0,0,0.5)",
+                          boxShadow:"inset 0 1px 0 rgba(255,255,255,0.06), 2px 4px 10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
+                        }}>
+                          <span style={{ fontFamily:"var(--font-mono)", fontSize:"9px", color:"#333", fontWeight:"700", letterSpacing:"0.1em" }}>{l}</span>
+                          <span style={{ fontSize:"15px", fontWeight:"700", color:"#ddd" }}>{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <VideoPlayer videoId={ej.videoId} title={ej.nombre} />
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
-
-// Sub-componente stat box
-function StatBox({ label, value }) {
-  return (
-    <div style={statStyles.box}>
-      <span style={statStyles.label}>{label}</span>
-      <span style={statStyles.value}>{value}</span>
-    </div>
-  );
-}
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-  },
-  // Tarjeta de instrucciones
-  infoCard: {
-    padding: "16px",
-    background: "#f7f7f7",
-    borderRadius: "12px",
-    border: "1px solid #eee",
-  },
-  infoTitle: {
-    fontSize: "15px",
-    fontWeight: "700",
-    color: "#111",
-    marginBottom: "8px",
-  },
-  infoText: {
-    fontSize: "13px",
-    color: "#555",
-    lineHeight: 1.6,
-  },
-  infoSubtitle: {
-    fontSize: "13px",
-    fontWeight: "700",
-    color: "#333",
-    marginBottom: "6px",
-  },
-  divider: {
-    height: "1px",
-    background: "#e5e5e5",
-    margin: "12px 0",
-  },
-  // Tabs de días
-  dayTabs: {
-    display: "flex",
-    gap: "6px",
-    overflowX: "auto",
-    scrollbarWidth: "none",
-  },
-  tab: {
-    flexShrink: 0,
-    padding: "8px 16px",
-    borderRadius: "99px",
-    border: "1.5px solid #e0e0e0",
-    background: "#fff",
-    fontSize: "13px",
-    fontWeight: "600",
-    color: "#555",
-    cursor: "pointer",
-    fontFamily: "inherit",
-  },
-  tabActive: {
-    background: "#111",
-    color: "#fff",
-    border: "1.5px solid #111",
-  },
-  list: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px",
-  },
-  card: {
-    border: "1px solid #e8e8e8",
-    borderRadius: "10px",
-    overflow: "hidden",
-    background: "#fff",
-  },
-  cardHeader: {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    width: "100%",
-    padding: "13px 14px",
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    fontFamily: "inherit",
-    textAlign: "left",
-  },
-  number: {
-    width: "22px",
-    height: "22px",
-    borderRadius: "50%",
-    background: "#f0f0f0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "11px",
-    fontWeight: "700",
-    color: "#333",
-    flexShrink: 0,
-  },
-  name: {
-    flex: 1,
-    fontSize: "14px",
-    fontWeight: "600",
-    color: "#111",
-  },
-  meta: {
-    fontSize: "12px",
-    color: "#888",
-    fontWeight: "500",
-  },
-  cardBody: {
-    padding: "0 14px 14px",
-    borderTop: "1px solid #f0f0f0",
-  },
-  statsRow: {
-    display: "flex",
-    gap: "8px",
-    paddingTop: "12px",
-  },
-};
-
-const statStyles = {
-  box: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "8px 12px",
-    background: "#f5f5f5",
-    borderRadius: "8px",
-    gap: "2px",
-    minWidth: "60px",
-  },
-  label: {
-    fontSize: "10px",
-    color: "#888",
-    textTransform: "uppercase",
-    letterSpacing: "0.05em",
-    fontWeight: "600",
-  },
-  value: {
-    fontSize: "15px",
-    fontWeight: "700",
-    color: "#111",
-  },
-};

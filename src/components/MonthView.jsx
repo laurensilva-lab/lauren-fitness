@@ -1,137 +1,61 @@
-// ============================================================
-// COMPONENTE: MonthView
-// Muestra UN mes de entrenamiento con navegación entre días.
-// Props:
-//   mes     — objeto del mes con { mes, nombre, objetivo, duracion, inicio, dias }
-//   warmups — array de calentamientos por día (del warmupData)
-// ============================================================
-
 import { useState } from "react";
 import DayView from "./DayView";
 
 export default function MonthView({ mes, warmups }) {
-  // Día activo (por defecto el primero)
   const [activeDay, setActiveDay] = useState(0);
-
-  const diaActual = mes.dias[activeDay];
-
-  // Buscar el calentamiento correspondiente al día actual
-  const warmupDelDia = warmups?.find((w) => w.dia === diaActual.dia);
+  const diaActual    = mes.dias[activeDay];
+  const warmupDelDia = warmups?.find(w => w.dia === diaActual.dia);
 
   return (
-    <div style={styles.container}>
-      {/* ─── Info del mes ─── */}
-      <div style={styles.monthInfo}>
-        <div style={styles.infoRow}>
-          <InfoPill label="Objetivo" value={mes.objetivo} />
-          <InfoPill label="Duración" value={mes.duracion} />
-          <InfoPill label="Inicio" value={mes.inicio} />
-        </div>
-      </div>
+    <div style={{ display:"flex", flexDirection:"column", gap:"14px" }}>
 
-      {/* ─── Selector de días (tabs) ─── */}
-      <div style={styles.dayTabs}>
-        {mes.dias.map((dia, i) => (
-          <button
-            key={i}
-            style={{
-              ...styles.dayTab,
-              ...(activeDay === i ? styles.dayTabActive : {}),
-            }}
-            onClick={() => setActiveDay(i)}
-          >
-            Día {dia.dia}
-          </button>
+      {/* Info chips */}
+      <div style={{ display:"flex", gap:"6px", flexWrap:"wrap" }}>
+        {[["OBJ",mes.objetivo],["DUR",mes.duracion],["INICIO",mes.inicio]].map(([label,value])=>(
+          <div key={label} style={{
+            display:"flex", flexDirection:"column", gap:"3px", padding:"8px 12px", borderRadius:"10px",
+            background:"linear-gradient(145deg,#121212 0%,#0a0a0a 100%)",
+            borderTop:"1px solid rgba(255,255,255,0.07)", borderLeft:"1px solid rgba(255,255,255,0.04)",
+            borderRight:"1px solid rgba(0,0,0,0.35)", borderBottom:"1px solid rgba(0,0,0,0.5)",
+            boxShadow:"inset 0 1px 0 rgba(255,255,255,0.04), 2px 4px 10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
+          }}>
+            <span style={{ fontFamily:"var(--font-mono)", fontSize:"8px", fontWeight:"700", color:"#2a2a2a", letterSpacing:"0.12em" }}>{label}</span>
+            <span style={{ fontSize:"12px", fontWeight:"600", color:"#888", lineHeight:1.2 }}>{value}</span>
+          </div>
         ))}
       </div>
 
-      {/* ─── Contenido del día seleccionado ─── */}
-      <DayView dia={diaActual} warmup={warmupDelDia} />
+      {/* Tabs días */}
+      <div style={{ display:"flex", gap:"6px", overflowX:"auto", scrollbarWidth:"none", paddingBottom:"2px" }}>
+        {mes.dias.map((dia,i)=>{
+          const active = activeDay === i;
+          return (
+            <button key={i} onClick={()=>setActiveDay(i)} style={{
+              flexShrink:0, display:"flex", flexDirection:"column", alignItems:"center",
+              padding:"8px 16px", borderRadius:"10px", gap:"2px", cursor:"pointer", fontFamily:"inherit",
+              background: active
+                ? "linear-gradient(160deg,#ffffff 0%,#c8c8c8 100%)"
+                : "linear-gradient(160deg,#1c1c1c 0%,#111111 100%)",
+              borderTop:    active ? "1px solid rgba(255,255,255,0.95)" : "1px solid rgba(255,255,255,0.10)",
+              borderLeft:   active ? "1px solid rgba(255,255,255,0.5)"  : "1px solid rgba(255,255,255,0.05)",
+              borderRight:  active ? "1px solid rgba(0,0,0,0.1)"        : "1px solid rgba(0,0,0,0.4)",
+              borderBottom: active ? "1px solid rgba(0,0,0,0.18)"       : "1px solid rgba(0,0,0,0.55)",
+              boxShadow: active
+                ? "inset 0 1px 0 rgba(255,255,255,0.95), inset 1px 0 0 rgba(255,255,255,0.4), 3px 6px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.4), 0 0 24px rgba(255,255,255,0.12)"
+                : "inset 0 1px 0 rgba(255,255,255,0.07), inset 1px 0 0 rgba(255,255,255,0.03), 2px 4px 10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)",
+              transition:"all 280ms cubic-bezier(0.34,1.56,0.64,1)",
+              transform: active ? "translateY(-1px)" : "translateY(0)",
+            }}>
+              <span style={{ fontFamily:"var(--font-mono)", fontSize:"16px", fontWeight:"700", lineHeight:1, color: active?"#000":"#444", transition:"color 280ms ease" }}>
+                {String(dia.dia).padStart(2,"00")}
+              </span>
+              <span style={{ fontFamily:"var(--font-mono)", fontSize:"8px", letterSpacing:"0.1em", color: active?"#666":"#222" }}>DÍA</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <DayView dia={diaActual} warmup={warmupDelDia} checkKeyPrefix={`m${mes.mes}`} />
     </div>
   );
 }
-
-// Sub-componente: pastilla de información
-function InfoPill({ label, value }) {
-  return (
-    <div style={infoPillStyles.pill}>
-      <span style={infoPillStyles.label}>{label}</span>
-      <span style={infoPillStyles.value}>{value}</span>
-    </div>
-  );
-}
-
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "16px",
-  },
-  // Fila de información del mes
-  monthInfo: {
-    padding: "14px",
-    background: "#f7f7f7",
-    borderRadius: "12px",
-    border: "1px solid #eee",
-  },
-  infoRow: {
-    display: "flex",
-    gap: "8px",
-    flexWrap: "wrap",
-  },
-  // Tabs de días
-  dayTabs: {
-    display: "flex",
-    gap: "6px",
-    overflowX: "auto",
-    paddingBottom: "2px",
-    /* Sin scrollbar visible en móvil */
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
-  },
-  dayTab: {
-    flexShrink: 0,
-    padding: "8px 16px",
-    borderRadius: "99px",
-    border: "1.5px solid #e0e0e0",
-    background: "#fff",
-    fontSize: "13px",
-    fontWeight: "600",
-    color: "#555",
-    cursor: "pointer",
-    transition: "all 150ms ease",
-    fontFamily: "inherit",
-    whiteSpace: "nowrap",
-  },
-  dayTabActive: {
-    background: "#111",
-    color: "#fff",
-    border: "1.5px solid #111",
-  },
-};
-
-const infoPillStyles = {
-  pill: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "2px",
-    padding: "8px 12px",
-    background: "#fff",
-    borderRadius: "8px",
-    border: "1px solid #eee",
-    minWidth: "80px",
-  },
-  label: {
-    fontSize: "10px",
-    color: "#aaa",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    fontWeight: "600",
-  },
-  value: {
-    fontSize: "13px",
-    fontWeight: "700",
-    color: "#111",
-    lineHeight: 1.2,
-  },
-};
