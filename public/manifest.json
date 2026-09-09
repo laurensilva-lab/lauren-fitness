@@ -1,18 +1,22 @@
 {
-  "name": "RSE — Rutina Lauren",
-  "short_name": "RSE",
-  "description": "Rendimiento Salud Estética — Rutina de entrenamiento",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
-  "orientation": "portrait",
+  "short_name": "Rutina",
+  "name": "Mi Rutina — Lauren",
   "icons": [
     {
-      "src": "/img/rse-logo.jpg",
-      "sizes": "192x192 512x512",
-      "type": "image/jpeg",
-      "purpose": "any"
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "start_url": "/",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "display": "standalone"
 }
