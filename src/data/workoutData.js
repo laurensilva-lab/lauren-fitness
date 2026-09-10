@@ -65,258 +65,6 @@ export const warmupData = {
 // Para agregar el video de un ejercicio, llenar "videoId"
 // ─────────────────────────────────────────────────
 export const meses = [
-  // ══════════════════════════════════════
-  // MES 1 — Adaptación anatómica y técnica
-  // Inicio: Diciembre — Duración: 8 semanas
-  // ══════════════════════════════════════
-  {
-    mes: 1,
-    nombre: "MES 1",
-    objetivo: "Adaptación anatómica y técnica",
-    duracion: "8 semanas",
-    inicio: "Diciembre",
-    dias: [
-      {
-        dia: 1,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla barra alta", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "LFyVjlPoiVA" },
-          { nombre: "Press banca c/pausa", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "gR8tfunTwN4" },
-          { nombre: "Camilla cuadriceps", series: "4", reps: "10", rir: "--", kg: "10l?", videoId: "MpEydcQ1oDw" },
-          { nombre: "Press c/m sentado", series: "4", reps: "10", rir: "-", kg: "5 a 8Xl?", videoId: "56lfDVYDPls" },
-          { nombre: "Aductores en maquina", series: "3", reps: "12", rir: "-", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
-          { nombre: "Plancha frontal fitball", series: "3", reps: '20-30"', rir: "-", kg: "-", videoId: "aE3mKyxCeck" },
-        ],
-      },
-      {
-        dia: 2,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto convencional", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "roi1lZP8Q0Q" },
-          { nombre: "Jalón al pecho (supino)", series: "4", reps: "8", rir: "-", kg: "?", videoId: "VnLY_duYJKI" },
-          { nombre: "Camilla de femorales", series: "4", reps: "10", rir: "--", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
-          { nombre: "Remo c/TRX", series: "4", reps: "10", rir: "-", kg: "-", videoId: "zWRGsR9EIOc" },
-          { nombre: "Patada gluteo c/polea", series: "3", reps: "12", rir: "-", kg: "?", videoId: "_Ldf8Gh4Ai8" },
-          { nombre: "Twist", series: "3", reps: "12xL", rir: "-", kg: "5KG?", videoId: "koedXVmNYrQ" },
-        ],
-      },
-      {
-        dia: 3,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla Smith (tronco vertical)", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "iCOBGhyK4sQ" },
-          { nombre: "Press inclinado c/m", series: "4", reps: "8", rir: "-", kg: "6 a 8Xl?", videoId: "B2lHFgA3POA" },
-          { nombre: "Estocadas", series: "4", reps: "10", rir: "--", kg: "5 a 10Xl?", videoId: "4clFA-eafpc" },
-          { nombre: "Vuelos laterales c/m", series: "4", reps: "10", rir: "-", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
-          { nombre: "Crunch", series: "3", reps: "12", rir: "-", kg: "5kg?", videoId: "R40BWEihg_Q" },
-          { nombre: "Tras nuca c/m", series: "3", reps: "12", rir: "-", kg: "5 a 8k?", videoId: "JsIUL2ZK1eM" },
-        ],
-      },
-      {
-        dia: 4,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
-          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
-          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
-          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
-        ],
-      },
-    ],
-  },
-
-  // ══════════════════════════════════════
-  // MES 2 — Adaptación anatómica y técnica
-  // Inicio: Febrero — Duración: 8 semanas
-  // ══════════════════════════════════════
-  {
-    mes: 2,
-    nombre: "MES 2",
-    objetivo: "Adaptación anatómica y técnica",
-    duracion: "8 semanas",
-    inicio: "Febrero",
-    dias: [
-      {
-        dia: 1,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla barra alta", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "LFyVjlPoiVA" },
-          { nombre: "Press banca c/pausa", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "gR8tfunTwN4" },
-          { nombre: "Camilla cuadriceps", series: "4", reps: "10", rir: "--", kg: "10l?", videoId: "MpEydcQ1oDw" },
-          { nombre: "Press c/m sentado", series: "4", reps: "10", rir: "-", kg: "5 a 8Xl?", videoId: "56lfDVYDPls" },
-          { nombre: "Aductores en maquina", series: "3", reps: "12", rir: "-", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
-          { nombre: "Plancha frontal fitball", series: "3", reps: '20-30"', rir: "-", kg: "-", videoId: "aE3mKyxCeck" },
-        ],
-      },
-      {
-        dia: 2,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto convencional", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "roi1lZP8Q0Q" },
-          { nombre: "Jalón al pecho (supino)", series: "4", reps: "8", rir: "-", kg: "?", videoId: "VnLY_duYJKI" },
-          { nombre: "Camilla de femorales", series: "4", reps: "10", rir: "--", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
-          { nombre: "Remo c/TRX", series: "4", reps: "10", rir: "-", kg: "-", videoId: "zWRGsR9EIOc" },
-          { nombre: "Patada gluteo c/polea", series: "3", reps: "12", rir: "-", kg: "?", videoId: "_Ldf8Gh4Ai8" },
-          { nombre: "Twist", series: "3", reps: "12xL", rir: "-", kg: "5KG?", videoId: "koedXVmNYrQ" },
-        ],
-      },
-      {
-        dia: 3,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla Smith (tronco vertical)", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "iCOBGhyK4sQ" },
-          { nombre: "Press inclinado c/m", series: "4", reps: "8", rir: "-", kg: "6 a 8Xl?", videoId: "B2lHFgA3POA" },
-          { nombre: "Estocadas", series: "4", reps: "10", rir: "--", kg: "5 a 10Xl?", videoId: "4clFA-eafpc" },
-          { nombre: "Vuelos laterales c/m", series: "4", reps: "10", rir: "-", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
-          { nombre: "Crunch", series: "3", reps: "12", rir: "-", kg: "5kg?", videoId: "R40BWEihg_Q" },
-          { nombre: "Tras nuca c/m", series: "3", reps: "12", rir: "-", kg: "5 a 8k?", videoId: "JsIUL2ZK1eM" },
-        ],
-      },
-      {
-        dia: 4,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
-          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
-          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
-          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
-        ],
-      },
-    ],
-  },
-
-  // ══════════════════════════════════════
-  // MES 3 — Fuerza + Hipertrofia
-  // Inicio: Marzo — Duración: 8 semanas
-  // ══════════════════════════════════════
-  {
-    mes: 3,
-    nombre: "MES 3",
-    objetivo: "Fuerza + Hipertrofia",
-    duracion: "8 semanas",
-    inicio: "Marzo",
-    dias: [
-      {
-        dia: 1,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla Smith", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "-eO_VydErV0" },
-          { nombre: "Press banca c/pausa", series: "3", reps: "6-8", rir: "1", kg: "12 a 24k?", videoId: "gR8tfunTwN4" },
-          { nombre: "Camilla de femorales", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
-          { nombre: "Jalón al pecho (supino)", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "5 a 8Xl?", videoId: "VnLY_duYJKI" },
-          { nombre: "Aductores en maquina", series: "2+AMRAP", reps: "12-15", rir: "1", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
-          { nombre: "Rueda c/fit", series: "3", reps: "12-15", rir: "1", kg: "-", videoId: "8bQt5n6sAT4" },
-        ],
-      },
-      {
-        dia: 2,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Rumano c/barra", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "fiDKXCSi8YA" },
-          { nombre: "Remo c/polea prono", series: "3", reps: "6-8", rir: "1", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Camilla cuadriceps 1 pie", series: "3", reps: "10-12", rir: "1", kg: "9 a 12l?", videoId: "RHOipBgmDvI" },
-          { nombre: "Press c/m sentado 1/4", series: "3", reps: "10-12", rir: "-", kg: "?", videoId: "5s5yf--SbvI" },
-          { nombre: "Patada gluteo c/polea", series: "2+AMRAP", reps: "12-15", rir: "1", kg: "?", videoId: "_Ldf8Gh4Ai8" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12-15", rir: "1", kg: "5KG?", videoId: "3cizD-Mg2II" },
-        ],
-      },
-      {
-        dia: 3,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Hip Thrust c/barra", series: "3", reps: "6-8", rir: "1", kg: "40 a 60k?", videoId: "7_1P_UfEAG0" },
-          { nombre: "Rack Chins 1", series: "3", reps: "6-8", rir: "1", kg: "-", videoId: "bw9GdVFBvcQ" },
-          { nombre: "Búlgaras", series: "3", reps: "10-12", rir: "1", kg: "5 a 10Xl?", videoId: "MGh5po3i5cE" },
-          { nombre: "Vuelos laterales c/m", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
-          { nombre: "Banco abdominal", series: "3", reps: "12-15", rir: "1", kg: "5kg?", videoId: "H2LPYWLXDc0" },
-          { nombre: "Trasnuca c/cuerda", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "LMWAnfFls9U" },
-        ],
-      },
-      {
-        dia: 4,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
-          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
-          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
-          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
-        ],
-      },
-    ],
-  },
-
-  // ══════════════════════════════════════
-  // MES 4 — Fuerza + Hipertrofia
-  // Inicio: Finales de Marzo — Duración: 4 semanas
-  // ══════════════════════════════════════
-  {
-    mes: 4,
-    nombre: "MES 4",
-    objetivo: "Fuerza + Hipertrofia",
-    duracion: "4 semanas",
-    inicio: "Finales de Marzo",
-    dias: [
-      {
-        dia: 1,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Sentadilla Smith", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "-eO_VydErV0" },
-          { nombre: "Press banca c/pausa", series: "3", reps: "6-8", rir: "1", kg: "12 a 24k?", videoId: "gR8tfunTwN4" },
-          { nombre: "Camilla de femorales", series: "3", reps: "10-12", rir: "1", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
-          { nombre: "Jalón al pecho (supino)", series: "3", reps: "10-12", rir: "1", kg: "5 a 8Xl?", videoId: "VnLY_duYJKI" },
-          { nombre: "Aductores en maquina", series: "3", reps: "12-15", rir: "1", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
-          { nombre: "Rueda c/fit", series: "3", reps: "12-15", rir: "1", kg: "-", videoId: "8bQt5n6sAT4" },
-        ],
-      },
-      {
-        dia: 2,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Rumano c/barra", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "fiDKXCSi8YA" },
-          { nombre: "Remo c/polea prono", series: "3", reps: "6-8", rir: "1", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Camilla cuadriceps 1 pie", series: "3", reps: "10-12", rir: "1", kg: "9 a 12l?", videoId: "RHOipBgmDvI" },
-          { nombre: "Press c/m sentado 1/4", series: "3", reps: "10-12", rir: "-", kg: "?", videoId: "5s5yf--SbvI" },
-          { nombre: "Patada gluteo c/polea", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "_Ldf8Gh4Ai8" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12-15", rir: "1", kg: "5KG?", videoId: "3cizD-Mg2II" },
-        ],
-      },
-      {
-        dia: 3,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Hip Thrust c/barra", series: "3", reps: "6-8", rir: "1", kg: "40 a 60k?", videoId: "7_1P_UfEAG0" },
-          { nombre: "Rack Chins 1", series: "3", reps: "6-8", rir: "1", kg: "-", videoId: "bw9GdVFBvcQ" },
-          { nombre: "Búlgaras", series: "3", reps: "10-12", rir: "1", kg: "5 a 10Xl?", videoId: "MGh5po3i5cE" },
-          { nombre: "Vuelos laterales c/m", series: "3", reps: "10-12", rir: "1", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
-          { nombre: "Banco abdominal", series: "3", reps: "12-15", rir: "1", kg: "5kg?", videoId: "H2LPYWLXDc0" },
-          { nombre: "Trasnuca c/cuerda", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "LMWAnfFls9U" },
-        ],
-      },
-      {
-        dia: 4,
-        tipo: "FULL BODY",
-        ejercicios: [
-          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
-          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
-          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
-          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
-          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
-          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
-        ],
-      },
-    ],
-  },
-
-  // ══════════════════════════════════════
-  // MES 5 — Fuerza + Hipertrofia
-  // Inicio: Finales de Abril — Duración: 8 semanas
-  // ══════════════════════════════════════
   {
     mes: 5,
     nombre: "MES 5",
@@ -374,6 +122,234 @@ export const meses = [
       },
     ],
   },
+  {
+    mes: 4,
+    nombre: "MES 4",
+    objetivo: "Fuerza + Hipertrofia",
+    duracion: "4 semanas",
+    inicio: "Finales de Marzo",
+    dias: [
+      {
+        dia: 1,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla Smith", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "-eO_VydErV0" },
+          { nombre: "Press banca c/pausa", series: "3", reps: "6-8", rir: "1", kg: "12 a 24k?", videoId: "gR8tfunTwN4" },
+          { nombre: "Camilla de femorales", series: "3", reps: "10-12", rir: "1", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
+          { nombre: "Jalón al pecho (supino)", series: "3", reps: "10-12", rir: "1", kg: "5 a 8Xl?", videoId: "VnLY_duYJKI" },
+          { nombre: "Aductores en maquina", series: "3", reps: "12-15", rir: "1", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
+          { nombre: "Rueda c/fit", series: "3", reps: "12-15", rir: "1", kg: "-", videoId: "8bQt5n6sAT4" },
+        ],
+      },
+      {
+        dia: 2,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Rumano c/barra", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "fiDKXCSi8YA" },
+          { nombre: "Remo c/polea prono", series: "3", reps: "6-8", rir: "1", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Camilla cuadriceps 1 pie", series: "3", reps: "10-12", rir: "1", kg: "9 a 12l?", videoId: "RHOipBgmDvI" },
+          { nombre: "Press c/m sentado 1/4", series: "3", reps: "10-12", rir: "-", kg: "?", videoId: "5s5yf--SbvI" },
+          { nombre: "Patada gluteo c/polea", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "_Ldf8Gh4Ai8" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12-15", rir: "1", kg: "5KG?", videoId: "3cizD-Mg2II" },
+        ],
+      },
+      {
+        dia: 3,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Hip Thrust c/barra", series: "3", reps: "6-8", rir: "1", kg: "40 a 60k?", videoId: "7_1P_UfEAG0" },
+          { nombre: "Rack Chins 1", series: "3", reps: "6-8", rir: "1", kg: "-", videoId: "bw9GdVFBvcQ" },
+          { nombre: "Búlgaras", series: "3", reps: "10-12", rir: "1", kg: "5 a 10Xl?", videoId: "MGh5po3i5cE" },
+          { nombre: "Vuelos laterales c/m", series: "3", reps: "10-12", rir: "1", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
+          { nombre: "Banco abdominal", series: "3", reps: "12-15", rir: "1", kg: "5kg?", videoId: "H2LPYWLXDc0" },
+          { nombre: "Trasnuca c/cuerda", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "LMWAnfFls9U" },
+        ],
+      },
+      {
+        dia: 4,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
+          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
+          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
+          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
+        ],
+      },
+    ],
+  },
+  {
+    mes: 3,
+    nombre: "MES 3",
+    objetivo: "Fuerza + Hipertrofia",
+    duracion: "8 semanas",
+    inicio: "Marzo",
+    dias: [
+      {
+        dia: 1,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla Smith", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "-eO_VydErV0" },
+          { nombre: "Press banca c/pausa", series: "3", reps: "6-8", rir: "1", kg: "12 a 24k?", videoId: "gR8tfunTwN4" },
+          { nombre: "Camilla de femorales", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
+          { nombre: "Jalón al pecho (supino)", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "5 a 8Xl?", videoId: "VnLY_duYJKI" },
+          { nombre: "Aductores en maquina", series: "2+AMRAP", reps: "12-15", rir: "1", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
+          { nombre: "Rueda c/fit", series: "3", reps: "12-15", rir: "1", kg: "-", videoId: "8bQt5n6sAT4" },
+        ],
+      },
+      {
+        dia: 2,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Rumano c/barra", series: "3", reps: "6-8", rir: "1", kg: "20 a 35k?", videoId: "fiDKXCSi8YA" },
+          { nombre: "Remo c/polea prono", series: "3", reps: "6-8", rir: "1", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Camilla cuadriceps 1 pie", series: "3", reps: "10-12", rir: "1", kg: "9 a 12l?", videoId: "RHOipBgmDvI" },
+          { nombre: "Press c/m sentado 1/4", series: "3", reps: "10-12", rir: "-", kg: "?", videoId: "5s5yf--SbvI" },
+          { nombre: "Patada gluteo c/polea", series: "2+AMRAP", reps: "12-15", rir: "1", kg: "?", videoId: "_Ldf8Gh4Ai8" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12-15", rir: "1", kg: "5KG?", videoId: "3cizD-Mg2II" },
+        ],
+      },
+      {
+        dia: 3,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Hip Thrust c/barra", series: "3", reps: "6-8", rir: "1", kg: "40 a 60k?", videoId: "7_1P_UfEAG0" },
+          { nombre: "Rack Chins 1", series: "3", reps: "6-8", rir: "1", kg: "-", videoId: "bw9GdVFBvcQ" },
+          { nombre: "Búlgaras", series: "3", reps: "10-12", rir: "1", kg: "5 a 10Xl?", videoId: "MGh5po3i5cE" },
+          { nombre: "Vuelos laterales c/m", series: "2+AMRAP", reps: "10-12", rir: "1", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
+          { nombre: "Banco abdominal", series: "3", reps: "12-15", rir: "1", kg: "5kg?", videoId: "H2LPYWLXDc0" },
+          { nombre: "Trasnuca c/cuerda", series: "3", reps: "12-15", rir: "1", kg: "?", videoId: "LMWAnfFls9U" },
+        ],
+      },
+      {
+        dia: 4,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
+          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
+          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
+          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
+        ],
+      },
+    ],
+  },
+  {
+    mes: 2,
+    nombre: "MES 2",
+    objetivo: "Adaptación anatómica y técnica",
+    duracion: "8 semanas",
+    inicio: "Febrero",
+    dias: [
+      {
+        dia: 1,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla barra alta", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "LFyVjlPoiVA" },
+          { nombre: "Press banca c/pausa", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "gR8tfunTwN4" },
+          { nombre: "Camilla cuadriceps", series: "4", reps: "10", rir: "--", kg: "10l?", videoId: "MpEydcQ1oDw" },
+          { nombre: "Press c/m sentado", series: "4", reps: "10", rir: "-", kg: "5 a 8Xl?", videoId: "56lfDVYDPls" },
+          { nombre: "Aductores en maquina", series: "3", reps: "12", rir: "-", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
+          { nombre: "Plancha frontal fitball", series: "3", reps: '20-30"', rir: "-", kg: "-", videoId: "aE3mKyxCeck" },
+        ],
+      },
+      {
+        dia: 2,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto convencional", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "roi1lZP8Q0Q" },
+          { nombre: "Jalón al pecho (supino)", series: "4", reps: "8", rir: "-", kg: "?", videoId: "VnLY_duYJKI" },
+          { nombre: "Camilla de femorales", series: "4", reps: "10", rir: "--", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
+          { nombre: "Remo c/TRX", series: "4", reps: "10", rir: "-", kg: "-", videoId: "zWRGsR9EIOc" },
+          { nombre: "Patada gluteo c/polea", series: "3", reps: "12", rir: "-", kg: "?", videoId: "_Ldf8Gh4Ai8" },
+          { nombre: "Twist", series: "3", reps: "12xL", rir: "-", kg: "5KG?", videoId: "koedXVmNYrQ" },
+        ],
+      },
+      {
+        dia: 3,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla Smith (tronco vertical)", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "iCOBGhyK4sQ" },
+          { nombre: "Press inclinado c/m", series: "4", reps: "8", rir: "-", kg: "6 a 8Xl?", videoId: "B2lHFgA3POA" },
+          { nombre: "Estocadas", series: "4", reps: "10", rir: "--", kg: "5 a 10Xl?", videoId: "4clFA-eafpc" },
+          { nombre: "Vuelos laterales c/m", series: "4", reps: "10", rir: "-", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
+          { nombre: "Crunch", series: "3", reps: "12", rir: "-", kg: "5kg?", videoId: "R40BWEihg_Q" },
+          { nombre: "Tras nuca c/m", series: "3", reps: "12", rir: "-", kg: "5 a 8k?", videoId: "JsIUL2ZK1eM" },
+        ],
+      },
+      {
+        dia: 4,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
+          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
+          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
+          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
+        ],
+      },
+    ],
+  },
+  {
+    mes: 1,
+    nombre: "MES 1",
+    objetivo: "Adaptación anatómica y técnica",
+    duracion: "8 semanas",
+    inicio: "Diciembre",
+    dias: [
+      {
+        dia: 1,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla barra alta", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "LFyVjlPoiVA" },
+          { nombre: "Press banca c/pausa", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "gR8tfunTwN4" },
+          { nombre: "Camilla cuadriceps", series: "4", reps: "10", rir: "--", kg: "10l?", videoId: "MpEydcQ1oDw" },
+          { nombre: "Press c/m sentado", series: "4", reps: "10", rir: "-", kg: "5 a 8Xl?", videoId: "56lfDVYDPls" },
+          { nombre: "Aductores en maquina", series: "3", reps: "12", rir: "-", kg: "20 a 35?", videoId: "AhxXC7ZLw0I" },
+          { nombre: "Plancha frontal fitball", series: "3", reps: '20-30"', rir: "-", kg: "-", videoId: "aE3mKyxCeck" },
+        ],
+      },
+      {
+        dia: 2,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto convencional", series: "4", reps: "8", rir: "-", kg: "20?", videoId: "roi1lZP8Q0Q" },
+          { nombre: "Jalón al pecho (supino)", series: "4", reps: "8", rir: "-", kg: "?", videoId: "VnLY_duYJKI" },
+          { nombre: "Camilla de femorales", series: "4", reps: "10", rir: "--", kg: "3 a 6L?", videoId: "B6t8MvbTtew" },
+          { nombre: "Remo c/TRX", series: "4", reps: "10", rir: "-", kg: "-", videoId: "zWRGsR9EIOc" },
+          { nombre: "Patada gluteo c/polea", series: "3", reps: "12", rir: "-", kg: "?", videoId: "_Ldf8Gh4Ai8" },
+          { nombre: "Twist", series: "3", reps: "12xL", rir: "-", kg: "5KG?", videoId: "koedXVmNYrQ" },
+        ],
+      },
+      {
+        dia: 3,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Sentadilla Smith (tronco vertical)", series: "4", reps: "8", rir: "-", kg: "10 a 20?", videoId: "iCOBGhyK4sQ" },
+          { nombre: "Press inclinado c/m", series: "4", reps: "8", rir: "-", kg: "6 a 8Xl?", videoId: "B2lHFgA3POA" },
+          { nombre: "Estocadas", series: "4", reps: "10", rir: "--", kg: "5 a 10Xl?", videoId: "4clFA-eafpc" },
+          { nombre: "Vuelos laterales c/m", series: "4", reps: "10", rir: "-", kg: "3 a 5Xl?", videoId: "gBeIzdiagnQ" },
+          { nombre: "Crunch", series: "3", reps: "12", rir: "-", kg: "5kg?", videoId: "R40BWEihg_Q" },
+          { nombre: "Tras nuca c/m", series: "3", reps: "12", rir: "-", kg: "5 a 8k?", videoId: "JsIUL2ZK1eM" },
+        ],
+      },
+      {
+        dia: 4,
+        tipo: "FULL BODY",
+        ejercicios: [
+          { nombre: "Peso muerto rumano c/m", series: "4", reps: "8", rir: "-", kg: "10 a 20Xl?", videoId: "X9mz4c0yz3M" },
+          { nombre: "Remo c/polea prono", series: "4", reps: "8", rir: "-", kg: "?", videoId: "Vm6E-2tq0bU" },
+          { nombre: "Hip Thrust c/maquina", series: "4", reps: "10", rir: "--", kg: "20 a 40?", videoId: "Mrle3041xrY" },
+          { nombre: "Serrucho", series: "4", reps: "10", rir: "-", kg: "7 a 12?", videoId: "xl1YiqQY2vA" },
+          { nombre: "Abducción c/banda acostada", series: "3", reps: "12", rir: "-", kg: "?", videoId: "KRjONywfvs4" },
+          { nombre: "Elevaciones de pierna", series: "3", reps: "12", rir: "-", kg: "-", videoId: "3cizD-Mg2II" },
+        ],
+      },
+    ],
+  }
 ];
 
 // ─────────────────────────────────────────────────
