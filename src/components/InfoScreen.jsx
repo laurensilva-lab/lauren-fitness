@@ -34,8 +34,6 @@ export default function InfoScreen({ programInfo, meses, gruposMusc }) {
     <div style={s.container}>
       {/* Hero con logo RSE de fondo */}
       <div style={s.hero} className="anim-fade-up">
-        {/* Anillo LED animado — gradiente rotante que simula luz corriendo por el borde */}
-        <div style={s.heroLedRing} />
         {/* Logo RSE — semitransparente de fondo */}
         <img src="/img/rse-logo.jpg" alt="" aria-hidden style={s.heroBgImg} />
         {/* Overlay para legibilidad */}
@@ -131,35 +129,31 @@ const s = {
   hero: {
     position: "relative",
     borderRadius: "16px",
-    overflow: "hidden",
+    overflow: "visible",         // visible para que el glow externo se vea
     padding: "40px 20px 36px",
     minHeight: "180px",
     background: "#0a0a0a",
-    // Borde LED animado via outline + box-shadow combinados
-    border: "1px solid transparent",
-    backgroundClip: "padding-box",
-    // Glow exterior estático — el CSS @keyframes hace el movimiento
+    // Borde LED estático — 4 lados con distintas intensidades
+    borderTop:    "1px solid rgba(255,255,255,0.35)",
+    borderLeft:   "1px solid rgba(255,255,255,0.18)",
+    borderRight:  "1px solid rgba(255,255,255,0.08)",
+    borderBottom: "1px solid rgba(255,255,255,0.05)",
+    // Glow externo estático — luz que emana desde afuera del borde
     boxShadow: [
-      "0 0 0 1px #1a1a1a",
-      "0 0 16px 2px rgba(255,255,255,0.08)",
-      "0 0 40px 4px rgba(255,255,255,0.03)",
-      "0 8px 32px rgba(0,0,0,0.7)",
+      // Glow exterior blanco — lo que se ve "alrededor"
+      "0 0 0 1px rgba(255,255,255,0.12)",
+      "0 0 8px 2px rgba(255,255,255,0.12)",
+      "0 0 20px 4px rgba(255,255,255,0.06)",
+      "0 0 40px 8px rgba(255,255,255,0.03)",
+      // Sombra de profundidad
+      "0 8px 32px rgba(0,0,0,0.8)",
+      // Highlight inset superior
+      "inset 0 1px 0 rgba(255,255,255,0.2)",
     ].join(", "),
-    animation: "ledBorder 3s ease-in-out infinite",
   },
-  // Pseudo-borde LED — div absoluto con gradiente rotante
+  // Sin anillo rotante — eliminado
   heroLedRing: {
-    position: "absolute",
-    inset: "-1px",
-    borderRadius: "17px",
-    padding: "1px",
-    background: "linear-gradient(135deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.35) 25%, rgba(255,255,255,0.0) 50%, rgba(255,255,255,0.15) 75%, rgba(255,255,255,0.0) 100%)",
-    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-    WebkitMaskComposite: "xor",
-    maskComposite: "exclude",
-    animation: "rotateLed 4s linear infinite",
-    pointerEvents: "none",
-    zIndex: 0,
+    display: "none",
   },
   heroBgImg: {
     position: "absolute", inset: 0, width: "100%", height: "100%",
