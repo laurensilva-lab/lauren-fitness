@@ -9,12 +9,13 @@ import { meses, warmupData, programInfo, gruposMusculares } from "./data/workout
 import MonthView      from "./components/MonthView";
 import WarmupScreen   from "./components/WarmupScreen";
 import InfoScreen     from "./components/InfoScreen";
-import CalendarScreen from "./components/CalendarScreen";
+import CalendarScreen   from "./components/CalendarScreen";
+import NutricionScreen  from "./components/NutricionScreen";
 import BottomNav      from "./components/BottomNav";
 import Sidebar        from "./components/Sidebar";
 import { useSwipe }   from "./hooks/useSwipe";
 
-const PAGES = ["meses", "calentamiento", "calendario", "info"];
+const PAGES = ["meses", "calentamiento", "calendario", "nutricion", "info"];
 const mono  = { fontFamily: "'JetBrains Mono', monospace" };
 
 export default function App() {
@@ -79,7 +80,7 @@ export default function App() {
 
   const pageTitle = {
     meses: "rutina", calentamiento: "entrada-en-calor",
-    calendario: "calendario", info: "programa",
+    calendario: "calendario", nutricion: "nutrición", info: "programa",
   }[activePage];
 
   // Estilo de transición — CSS transition puro, sin re-montar
@@ -112,6 +113,7 @@ export default function App() {
     );
     if (activePage === "calentamiento") return <WarmupScreen data={warmupData} />;
     if (activePage === "calendario")    return <CalendarScreen />;
+    if (activePage === "nutricion")     return <NutricionScreen />;
     return <InfoScreen programInfo={programInfo} meses={meses} gruposMusc={gruposMusculares} />;
   };
 
