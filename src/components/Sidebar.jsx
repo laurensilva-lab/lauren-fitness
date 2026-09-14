@@ -26,8 +26,7 @@ export default function Sidebar({ activePage, onNavigate }) {
           boxShadow:"0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(255,255,255,0.5), 0 0 32px rgba(255,255,255,0.2)",
           animation:"pulseGlow 2.5s ease-in-out infinite",
         }} />
-        <span style={{ fontFamily:"var(--font-mono)", fontSize:"13px", fontWeight:"700", color:"#e8e8e8", letterSpacing:"0.06em" }}>LAUREN</span>
-        <span style={{ fontFamily:"var(--font-mono)", fontSize:"13px", fontWeight:"400", color:"#1e1e1e", letterSpacing:"0.06em" }}>.FIT</span>
+        <span style={{ fontFamily:"var(--font-mono)", fontSize:"13px", fontWeight:"700", color:"#e8e8e8", letterSpacing:"0.06em" }}>RSE</span>
       </div>
 
       <div className="divider-led" style={{ margin:"16px 0" }} />

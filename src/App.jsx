@@ -154,8 +154,8 @@ export default function App() {
         <div style={mob.hContent}>
           <div style={mob.logo}>
             <span style={mob.dot} />
-            <span style={mob.logoText}>LAUREN</span>
-            <span style={mob.logoSub}>.FIT</span>
+            <span style={mob.logoText}>RSE</span>
+            <span style={mob.logoSub}></span>
           </div>
           <div style={mob.breadcrumb}>
             <span style={mob.slash}>/</span>
