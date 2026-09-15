@@ -13,12 +13,15 @@ import CalendarScreen   from "./components/CalendarScreen";
 import NutricionScreen  from "./components/NutricionScreen";
 import BottomNav      from "./components/BottomNav";
 import Sidebar        from "./components/Sidebar";
-import { useSwipe }   from "./hooks/useSwipe";
+import { useSwipe }    from "./hooks/useSwipe";
+import { useAuth }     from "./hooks/useAuth";
+import LoginScreen     from "./components/LoginScreen";
 
 const PAGES = ["meses", "calentamiento", "calendario", "nutricion", "info"];
 const mono  = { fontFamily: "'JetBrains Mono', monospace" };
 
 export default function App() {
+  const { session, login, logout } = useAuth();
   const [activePage, setActivePage] = useState("meses");
   const [activeMes,  setActiveMes]  = useState(0);
   const [isDesktop,  setIsDesktop]  = useState(window.innerWidth >= 768);
@@ -117,6 +120,9 @@ export default function App() {
     return <InfoScreen programInfo={programInfo} meses={meses} gruposMusc={gruposMusculares} />;
   };
 
+  // ── LOGIN ─────────────────────────────────────────────────
+  if (!session) return <LoginScreen onLogin={login} />;
+
   // ── DESKTOP ────────────────────────────────────────────────
   if (isDesktop) {
     return (
@@ -131,8 +137,8 @@ export default function App() {
                 <span style={desk.page}>{pageTitle}</span>
               </div>
               <div style={desk.tags}>
-                <span style={desk.tag}>FULL BODY</span>
-                <span style={desk.tag}>{meses.length} MESES</span>
+                <span style={desk.tag}>{session.nombre || session.usuario}</span>
+                <button onClick={logout} style={desk.logoutBtn}>Salir ↗</button>
               </div>
             </div>
           </header>
@@ -161,6 +167,7 @@ export default function App() {
             <span style={mob.slash}>/</span>
             <span style={mob.page}>{pageTitle}</span>
           </div>
+          <button onClick={logout} style={mob.logoutBtn}>✕</button>
         </div>
         {/* Indicadores de página */}
         <div style={mob.dotsRow}>
